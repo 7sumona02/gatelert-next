@@ -33,6 +33,7 @@ export default function Component() {
       toast.error('Account not found')
       return
     }
+    toast.message('Processing payment...')
 
     const res = await pushTransactions({
       type: 'DEBIT',

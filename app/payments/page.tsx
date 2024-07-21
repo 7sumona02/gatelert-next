@@ -39,6 +39,7 @@ export default function Component() {
       setAmount('')
       return
     }
+    toast.message('Processing payment...')
 
     const res = await pushTransactions({
       type: 'PAYMENT',
