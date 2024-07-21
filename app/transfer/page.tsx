@@ -7,6 +7,7 @@ import Account from "../account";
 import { useState } from "react";
 import { toast } from 'sonner';
 import { getAccount, getStatus, pushTransactions } from "@/actions/db"
+import { Loader } from "lucide-react"
 
 export default function Component() {
   const [amount, setAmount] = useState('');
@@ -38,6 +39,7 @@ export default function Component() {
       setAmount('')
       return
     }
+    toast.message('Processing payment...')
 
     const res = await pushTransactions({
       type: 'TRANSFER',
@@ -89,7 +91,7 @@ export default function Component() {
           </div>
         </CardContent>
         <CardFooter>
-          <Button className="w-full" onClick={()=>makeTransaction()}>Confirm Payment</Button>
+        <Button onClick={()=>makeTransaction()} className="w-full">{loading ? <Loader/> : "Confirm Payment"}</Button>
         </CardFooter>
       </Card>
     </div>
